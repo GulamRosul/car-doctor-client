@@ -1,12 +1,25 @@
 import { Link } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const SingUp = () => {
+  const { createUser } = useContext(AuthContext);
+  const handleSingUp = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, password);
 
-
-    const handleSingUp = (event) => {
-        event.preventDefault();
-      };
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
@@ -58,11 +71,15 @@ const SingUp = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <input className="btn btn-primary" type="submit" value="Sing Up" />
+              <input
+                className="btn btn-primary"
+                type="submit"
+                value="Sing Up"
+              />
             </div>
           </form>
           <p className="my-4 text-center">
-           Already Have an Account?
+            Already Have an Account?
             <Link className="text-orange-500 font-bold" to="/login">
               Login
             </Link>
