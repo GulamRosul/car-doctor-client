@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
 
-const Login = () => {
-  const handleLogin = (event) => {
-    event.preventDefault();
-  };
+const SingUp = () => {
+
+
+    const handleSingUp = (event) => {
+        event.preventDefault();
+      };
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
@@ -12,8 +14,20 @@ const Login = () => {
           <img src={img} alt="" />
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <h1 className="text-3xl text-center font-bold">Login</h1>
-          <form onSubmit={handleLogin} className="card-body">
+          <h1 className="text-3xl text-center font-bold">Sing Up</h1>
+          <form onSubmit={handleSingUp} className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="name"
+                name="name"
+                placeholder="Name"
+                className="input input-bordered"
+                required
+              />
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -28,7 +42,7 @@ const Login = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text">Conform Password</span>
               </label>
               <input
                 type="password"
@@ -44,13 +58,13 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <input className="btn btn-primary" type="submit" value="Login" />
+              <input className="btn btn-primary" type="submit" value="Sing Up" />
             </div>
           </form>
           <p className="my-4 text-center">
-            New to Car Doctors
-            <Link className="text-orange-500 font-bold" to="/singUp">
-              Sing Up
+           Already Have an Account?
+            <Link className="text-orange-500 font-bold" to="/login">
+              Login
             </Link>
           </p>
         </div>
@@ -59,4 +73,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SingUp;
