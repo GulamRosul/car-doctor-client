@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
 
-const BookingRow = ({ booking, handleDelete }) => {
-    const {_id, customerName, email, date, service, price, img } = booking;
-    
+const BookingRow = ({ booking, handleDelete, handleBookingConfirm }) => {
+  const { _id, customerName, email, date, service, price, img, status } =
+    booking;
 
   return (
     <tr>
       <th>
-        <button onClick={() => handleDelete(_id)} className="btn btn-sm btn-circle">
+        <button
+          onClick={() => handleDelete(_id)}
+          className="btn btn-sm btn-circle"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -35,7 +38,16 @@ const BookingRow = ({ booking, handleDelete }) => {
       <td>{date}</td>
       <td>${price}</td>
       <th>
-        <button className="btn btn-ghost btn-xs">details</button>
+        {status === "confirm" ? (
+          <span className="font-bold text-primary">Confirmed</span>
+        ) : (
+          <button
+            onClick={() => handleBookingConfirm(_id)}
+            className="btn btn-ghost btn-xs"
+          >
+           Please Confirm
+          </button>
+        )}
       </th>
     </tr>
   );
